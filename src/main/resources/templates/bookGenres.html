@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h2>Select genre:</h2>
+<form th:method="post">
+    <label th:each="genre:${genres}">
+        <input type="radio" name="genre" th:value="${genre}" th:text="${genre}"> <br/>
+    </label>
+    <input type='submit' value='Search'>
+</form>
+</body>
+</html>

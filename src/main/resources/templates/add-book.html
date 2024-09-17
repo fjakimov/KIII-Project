@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{'/books/add'}" method="post">
+    <input id="id" type="hidden" name="bookId"
+           th:value="(${book} != null ? ${book.get().getId()} : '')">
+    <label for="title">
+        Book title:
+        <input type="text" id="title"
+               th:value="(${book} != null ? ${book.get().getTitle()} : '')"
+               th:name="title">
+    </label><br>
+    <label for="isbn">
+        Book isbn:
+        <input type="text" id="isbn"
+               th:value="(${book} != null ? ${book.get().getIsbn()} : '')"
+               th:name="isbn">
+    </label><br>
+    <label for="genre">
+        Book genre:
+        <input type="text" id="genre"
+               th:value="(${book} != null ? ${book.get().getGenre()} : '')"
+               th:name="genre">
+    </label><br>
+    <label for="year">Book year
+        <input type="text" id="year"
+               th:value="(${book} != null ? ${book.get().getYear()} : '')"
+               th:name="year">
+    </label><br>
+    <label for="bookStoreId">Bookstore:</label>
+    <select name="bookStoreId" id="bookStoreId">
+        <option th:each="bookStoree : ${bookStore}"
+                th:value="${bookStoree.getId()}"
+                th:text="${bookStoree.getName()}"
+                th:selected="${book != null and book.get().getBookStore().getId() == bookStoree.getId()}">
+        </option>
+    </select>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

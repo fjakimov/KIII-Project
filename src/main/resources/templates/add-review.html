@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Add Review</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/books/review/{}}" method="post">
+    <h2>Add Review for <span th:text="${book.title}"></span></h2>
+    <input type="hidden" th:value="${book.id}" />
+
+    <input type="hidden" th:value="${review.getId()}" />
+
+    <label for="grade">Grade:</label>
+    <input type="number" id="grade" required>
+
+    <br>
+
+    <label for="description">Description:</label>
+    <textarea id="description" rows="4" required></textarea>
+    <br>
+
+    <label for="timestamp">Timestamp:</label>
+    <input type="datetime-local" id="timestamp"/>
+
+    <br>
+    <button>Submit</button>
+</form>
+</body>
+</html>
+<!--<form th:action="@{'/books/add'}" method="post">-->
+<!--    <input id="id" type="hidden" name="bookId"-->
+<!--           th:value="(${book} != null ? ${book.get().getId()} : '')">-->
+<!--    <label for="title">-->
+<!--        Book title:-->
+<!--        <input type="text" id="title"-->
+<!--               th:value="(${book} != null ? ${book.get().getTitle()} : '')"-->
+<!--               th:name="title">-->
+<!--    </label><br>-->
+<!--    <label for="isbn">-->
+<!--        Book isbn:-->
+<!--        <input type="text" id="isbn"-->
+<!--               th:value="(${book} != null ? ${book.get().getIsbn()} : '')"-->
+<!--               th:name="isbn">-->
+<!--    </label><br>-->
+<!--    <label for="genre">-->
+<!--        Book genre:-->
+<!--        <input type="text" id="genre"-->
+<!--               th:value="(${book} != null ? ${book.get().getGenre()} : '')"-->
+<!--               th:name="genre">-->
+<!--    </label><br>-->
+<!--    <label for="year">Book year-->
+<!--        <input type="text" id="year"-->
+<!--               th:value="(${book} != null ? ${book.get().getYear()} : '')"-->
+<!--               th:name="year">-->
+<!--    </label><br>-->
+<!--    <label for="bookStoreId">Bookstore:</label>-->
+<!--    <select name="bookStoreId" id="bookStoreId">-->
+<!--        <option th:each="bookStoree : ${bookStore}"-->
+<!--                th:value="${bookStoree.getId()}"-->
+<!--                th:text="${bookStoree.getName()}"-->
+<!--                th:selected="${book != null and book.get().getBookStore().getId() == bookStoree.getId()}">-->
+<!--        </option>-->
+<!--    </select>-->
+<!--    <button type="submit">Submit</button>-->
+<!--</form>-->

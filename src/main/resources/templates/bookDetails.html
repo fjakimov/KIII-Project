@@ -1,0 +1,19 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <h1 th:text="'Name of the book: '+${book.getTitle()}">Book title</h1>
+</header>
+<section>
+    <h2 th:text="'Book genre: ' + ${book.getGenre()}">Genre</h2>
+    <h2 th:text="'Book year: ' + ${book.getYear()}">Year</h2>
+    <h2>Authors:</h2>
+    <ul th:each="author:${book.getAuthors()}">
+        <li th:text="${author.getName() + ' ' + author.getSurname()}"></li>
+    </ul>
+</section>
+</body>
+</html>

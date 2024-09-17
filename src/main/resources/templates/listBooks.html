@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Books Homepage - Welcome to My Book Store</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .danger{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Book Store</h1>
+</header>
+<main>
+    <!-- Display radio buttons for each book,
+            the value should be the isbn
+            and the displayed text should be Title: <bookTitle>, Genre:<genre>, Year: <year> -->
+
+    <th:block th:if="${hasError}">
+        <h2 th:text="${error}" class="danger"></h2>
+    </th:block>
+    <form th:action="@{/authors}" th:method="post">
+        <h2>Choose book</h2>
+        <ul>
+            <li th:each="book:${books}">
+                <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}"
+                       th:text="'Title: ' + ${book.getTitle()} + ', Genre: ' + ${book.getGenre()} + ', Year: ' + ${book.getYear()} + ', BookStore: '+ ${book.getBookStore().getName()}">
+
+                <a th:href="@{'/books/edit/{id}' (id=${book.getId()})}">
+                    <button type="button">Edit</button>
+                </a>
+
+                <a th:href="@{'/books/delete/{id}' (id=${book.getId()})}">
+                    <button type="button">Delete</button>
+                </a>
+                <a th:href="@{'/books/clone/{id}' (id=${book.getId()})}">
+                    <button type="button">Clone</button>
+                </a>
+                <a th:href="@{'/books/review?id=' + ${book.getId()}}">
+                    <button type="button">Add Review</button>
+                </a>
+            </li>
+        </ul>
+        <button type="submit">Submit</button>
+    </form>
+    <form th:action="@{'/books/add'}" method="get">
+        <button type="submit">Add book</button>
+    </form>
+
+<!--    <th:block th:method="post">-->
+<!--        <th:block th:each="book:${books}">-->
+<!--            <form th:action="@{'/books/delete/{id}' (id=${book.getId()})}" th:method="DELETE">-->
+<!--                <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}"-->
+<!--                       th:text="'Title: ' + ${book.getTitle()} + ', Genre: ' + ${book.getGenre()} + ', Year: ' + ${book.getYear()} + ', BookStore: '+ ${book.getBookStore().getName()}">-->
+<!--                <a th:href="@{'/books/edit-form/{id}' (id=${book.getId()})}">-->
+<!--                    <button type="button">Edit</button>-->
+<!--                </a>-->
+<!--                <button type="submit">x-->
+<!--                    Delete-->
+<!--                </button>-->
+<!--            </form>-->
+<!--            <br>-->
+<!--        </th:block>-->
+<!--        <input type='submit' value='Submit'>-->
+<!--    </th:block>-->
+
+</main>
+</body>
+</html>
