@@ -31,14 +31,6 @@
                th:value="(${book} != null ? ${book.get().getYear()} : '')"
                th:name="year">
     </label><br>
-    <label for="bookStoreId">Bookstore:</label>
-    <select name="bookStoreId" id="bookStoreId">
-        <option th:each="bookStoree : ${bookStore}"
-                th:value="${bookStoree.getId()}"
-                th:text="${bookStoree.getName()}"
-                th:selected="${book != null and book.get().getBookStore().getId() == bookStoree.getId()}">
-        </option>
-    </select>
     <button type="submit">Submit</button>
 </form>
 

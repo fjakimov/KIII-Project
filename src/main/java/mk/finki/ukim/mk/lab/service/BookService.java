@@ -14,7 +14,7 @@ public interface BookService {
 //    List<String> listGenres();
     List<Book> findBooksByGenres(String genre);
     void deleteBookById(Long id);
-    Optional<Book> save(String title, String isbn, String genre, Integer year, Long bookStore);
+    Optional<Book> save(String title, String isbn, String genre, Integer year);
     Optional<Book> update(Long id, String title, String isbn, String genre, Integer year, Long bookStore);
     Optional<Book> findBookById(Long bookId);
 }

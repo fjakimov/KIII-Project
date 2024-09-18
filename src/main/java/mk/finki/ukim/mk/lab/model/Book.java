@@ -26,16 +26,15 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long id, String title, String isbn, String genre, Integer year, BookStore bookStore) {
+    public Book(Long id, String title, String isbn, String genre, Integer year) {
         this.isbn = isbn;
         this.title = title;
         this.genre = genre;
         this.year = year;
         this.id = id;
-        this.bookStore = bookStore;
     }
 
-    public Book(String title, String isbn, String genre, int year, List<Author> authors, BookStore bookStore) {
+    public Book(String title, String isbn, String genre, int year) {
         this.isbn = isbn;
         this.title = title;
         this.genre = genre;

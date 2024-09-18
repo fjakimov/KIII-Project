@@ -19,8 +19,7 @@ public class BookServiceImplementation implements BookService {
     private final BookRepository bookRepository;
     private final AuthorRepository authorRepository;
     private final BookStoreRepository bookStoreRepository;
-
-    public BookServiceImplementation(BookRepository bookRepository,AuthorRepository authorRepository,BookStoreRepository bookStoreRepository) {
+    public BookServiceImplementation(BookRepository bookRepository, AuthorRepository authorRepository, BookStoreRepository bookStoreRepository) {
         this.bookRepository = bookRepository;
         this.authorRepository = authorRepository;
         this.bookStoreRepository = bookStoreRepository;
@@ -70,10 +69,9 @@ public class BookServiceImplementation implements BookService {
     }
 
     @Override
-    public Optional<Book> save(String title, String isbn, String genre, Integer year, Long bookStoreId) {
-        BookStore bookStore = bookStoreRepository.findById(bookStoreId).orElseThrow(()->new BookStoreNotFound(bookStoreId));
+    public Optional<Book> save(String title, String isbn, String genre, Integer year) {
         bookRepository.deleteByIsbn(isbn);
-        return Optional.of(bookRepository.save(new Book(title, isbn, genre, year,new ArrayList<>(),bookStore)));
+        return Optional.of(bookRepository.save(new Book(title, isbn, genre, year)));
     }
 
     @Override

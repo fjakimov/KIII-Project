@@ -35,7 +35,7 @@
         <ul>
             <li th:each="book:${books}">
                 <input type="radio" name="bookIsbn" th:value="${book.getIsbn()}"
-                       th:text="'Title: ' + ${book.getTitle()} + ', Genre: ' + ${book.getGenre()} + ', Year: ' + ${book.getYear()} + ', BookStore: '+ ${book.getBookStore().getName()}">
+                       th:text="'Title: ' + ${book.getTitle()} + ', Genre: ' + ${book.getGenre()} + ', Year: ' + ${book.getYear()}">
 
                 <a th:href="@{'/books/edit/{id}' (id=${book.getId()})}">
                     <button type="button">Edit</button>

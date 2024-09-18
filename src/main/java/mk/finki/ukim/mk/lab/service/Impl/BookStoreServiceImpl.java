@@ -2,7 +2,6 @@ package mk.finki.ukim.mk.lab.service.Impl;
 
 import lombok.AllArgsConstructor;
 import mk.finki.ukim.mk.lab.model.BookStore;
-import mk.finki.ukim.mk.lab.repository.InMemoryBookStoreRepository;
 import mk.finki.ukim.mk.lab.repository.jpa.BookStoreRepository;
 import mk.finki.ukim.mk.lab.service.BookStoreService;
 import org.springframework.stereotype.Service;

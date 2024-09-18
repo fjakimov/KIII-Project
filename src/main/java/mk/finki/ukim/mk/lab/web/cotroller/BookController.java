@@ -1,6 +1,5 @@
 package mk.finki.ukim.mk.lab.web.cotroller;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.AllArgsConstructor;
 import mk.finki.ukim.mk.lab.model.Author;
 import mk.finki.ukim.mk.lab.model.Book;
@@ -25,7 +24,6 @@ public class BookController {
     private final AuthorService authorService;
     private final BookStoreService bookStoreService;
     private final ReviewService reviewService;
-
     @GetMapping("/books")
     public String getBooksPage(@RequestParam(required = false) String error, Model model){
         if (error != null && !error.isEmpty()) {
@@ -38,19 +36,23 @@ public class BookController {
     }
 
     @PostMapping("/books/add")
-    public String saveBook(@RequestParam(required = false) Long bookId, @RequestParam String title, @RequestParam String isbn, @RequestParam String genre,@RequestParam int year,@RequestParam Long bookStoreId){
-        if(bookId != null){
-            this.bookService.update(bookId, title, isbn, genre, year, bookStoreId);
-        }
-        else{
-            this.bookService.save(title, isbn, genre, year, bookStoreId);
+    public String saveBook(@RequestParam(required = false) Long bookId,
+                           @RequestParam String title,
+                           @RequestParam String isbn,
+                           @RequestParam String genre,
+                           @RequestParam int year) {
+        if (bookId != null) {
+            this.bookService.update(bookId, title, isbn, genre, year, 1L);
+        } else {
+            this.bookService.save(title, isbn, genre, year);
         }
         return "redirect:/books";
     }
 
+
     @GetMapping("/books/add")
     public String showAddedBook(Model model){
-        model.addAttribute("bookStore", bookStoreService.findAll());
+        model.addAttribute("bookStores", bookStoreService.findAll());
         return "add-book";
     }
 
@@ -86,11 +88,6 @@ public class BookController {
             clonedAuthors.add(clonedAuthor);
         }
 
-        Book clonedBook = new Book("Copy of " + originalBook.getTitle(), originalBook.getIsbn(), originalBook.getGenre(),
-                originalBook.getYear(), clonedAuthors, bookStore);
-
-        bookService.save(clonedBook.getTitle(), clonedBook.getIsbn(), clonedBook.getGenre(),
-                clonedBook.getYear(), bookStore.getId());
 
         return "redirect:/books";
     }

@@ -1,6 +1,4 @@
 package mk.finki.ukim.mk.lab.web.cotroller;
-
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import mk.finki.ukim.mk.lab.service.AuthorService;
