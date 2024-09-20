@@ -1,0 +1,37 @@
+name: GithubActions CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Build Maven
+        run: mvn clean package
+
+      - name: Build Docker image
+        run: |
+          docker build -t fice127/kiii-project:latest .
+
+      - name: Push Docker image to DockerHub
+        run: |
+          echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+          docker push fice127/kiii-project:latest
+          
+      - name: Deployment
+        if: success()
+        run: |
+          docker run -d -p 9091:9090 fice127/kiii-project:latest
