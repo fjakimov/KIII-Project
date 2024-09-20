@@ -19,8 +19,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Build Maven with Retry
-        run: mvn clean package -Dmaven.wagon.http.retryHandler.count=3
+      - name: Build Maven
+        run: mvn clean package -Xmx1024m
 
       - name: Build Docker image
         run: |
