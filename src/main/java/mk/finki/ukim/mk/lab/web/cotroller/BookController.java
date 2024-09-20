@@ -21,8 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BookController {
     private final BookService bookService;
-    private final AuthorService authorService;
-    private final BookStoreService bookStoreService;
+    private final BookStoreService bookStoreServic;
     private final ReviewService reviewService;
     @GetMapping("/books")
     public String getBooksPage(@RequestParam(required = false) String error, Model model){
