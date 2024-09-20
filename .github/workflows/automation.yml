@@ -20,10 +20,7 @@ jobs:
           java-version: '17'
 
       - name: Build Maven
-        run: |
-          sudo apt-get update
-          sudo apt-get install maven -y
-          mvn clean package
+        run: mvn clean package
 
 
       - name: Build Docker image
