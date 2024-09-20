@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -20,7 +20,7 @@ jobs:
           java-version: '17'
 
       - name: Build Maven
-        run: mvn clean package -Xmx1024m
+        run: mvn clean package 
 
       - name: Build Docker image
         run: |
