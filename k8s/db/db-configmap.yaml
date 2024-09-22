@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: db-config
 data:
-  POSTGRES_DB: lab_db
+  POSTGRES_DB: "lab_db"

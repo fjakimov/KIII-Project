@@ -23,7 +23,7 @@ public class BookController {
     private final BookService bookService;
     private final BookStoreService bookStoreService;
     private final ReviewService reviewService;
-    @GetMapping("/books")
+    @GetMapping("/")
     public String getBooksPage(@RequestParam(required = false) String error, Model model){
         if (error != null && !error.isEmpty()) {
             model.addAttribute("hasError", true);
